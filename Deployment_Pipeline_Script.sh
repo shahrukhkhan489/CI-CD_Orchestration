@@ -7,14 +7,17 @@ url="https://azkabanhostname:8443"
 
 mail_id="shahrukhkhan489@gmail.com"
 
+nexus_url="http://nexushostname:8080/projects"
 # Deploying Artifact on Linux
 
+cd /tmp/Deploy/
+wget $nexus_url/$project/$project.tar
 
 if [ -f /tmp/Deploy/*.tar ];
-then
-        rm -rf /azkaban/artifacts/$project//*
-        mkdir -p /azkaban/artifacts/$project//libs
-        mv /tmp/Deploy/*.tar /azkaban/artifacts/$project//libs/
+then        
+        rm -rf /azkaban/artifacts/$project/*
+        mkdir -p /azkaban/artifacts/$project/libs
+        mv /tmp/Deploy/*.tar /azkaban/artifacts/$project/libs/
         mail -s '$project tar has been copied' -c $mail_id << EOF
 Hi Team
 
@@ -32,10 +35,11 @@ fi
 
 # Deploying Artifact on Azkaban
 
+cd /tmp/Deploy/
+wget $nexus_url/$project/$project.zip
+
 if [ -f /tmp/Deploy/*.zip ];
 then
-
-
 
 curl --silent -k -X POST --data "action=login&username=$usrname&password=$pass" $url/ |tee /tmp/sid;session_id=`cat /tmp/sid |grep session.id|awk -F'"' '{print $4}'`
 
