@@ -73,17 +73,17 @@ def main():
 	#credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope) # OAuth2 GOOGLE CREDENTIALS TO CONNECT TO GOOGLE SHEET
 
 	gc = gspread.authorize(credentials)
-	wks = gc.open("UAT_Release_DDL_Scripts").sheet1 # OPENING GOOGLE SHEET
+	wks = gc.open("Release_DDL_Scripts").sheet1 # OPENING GOOGLE SHEET
 	cell_list = wks.range('G2:G100')	   # EXPLORING THE COPY STATUS - "G CLOUMN"
 
 
 	queuename="short_running" # MAP-REDUCE QUEUE NAME
 
 	systemhostname = socket.gethostname()
-	prodhostname="phga0015"
-	devhostname="nhga0015"
-	uathostname="nhga0016"
-	uatusername="nzhdhc1"
+	prodhostname="host123"
+	devhostname="host234"
+	uathostname="host456"
+	uatusername="user"
 
 
 
@@ -115,7 +115,7 @@ def main():
 		# Getting Source and Destination Clusters from the sheet
 		#sheetsource = wks.acell("H"+str(cell.row)).value
 		sheetdestination = "UAT"
-		sourcehostname = "nhga0016"
+		sourcehostname = "host456"
 		print cell.row
 
 		if ( wks.acell("E"+str(cell.row)).value and wks.acell("F"+str(cell.row)).value ) :
