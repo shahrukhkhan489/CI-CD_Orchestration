@@ -201,7 +201,7 @@ Output Logs :
 """+ wks.acell("J"+str(cell.row)).value + """
 Error Logs :
 """+ wks.acell("H"+str(cell.row)).value + """
-You may view the status of request on https://docs.google.com/spreadsheets/d/1eWk8C59jruNHSUYBmD0ltvofu3nP6-kq5Q3zp_Eknjg/edit#gid=0
+
 Thanks and Regards
 EOF"""
 					os.system(mailscript)
